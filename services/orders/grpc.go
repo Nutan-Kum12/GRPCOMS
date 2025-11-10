@@ -1,4 +1,11 @@
-package orders
+package main
+
+import (
+	"log"
+	"net"
+
+	"google.golang.org/grpc"
+)
 
 type gRPCServer struct {
 	addr string
@@ -7,7 +14,21 @@ type gRPCServer struct {
 func NewgRPCServer(addr string) *gRPCServer {
 	return &gRPCServer{addr: addr}
 }
-func (s *gRPCServer) Start() error {
+func (s *gRPCServer) Run() error {
 	// Implementation for starting the gRPC server
-	return nil
+
+	lis, err := net.Listen("tcp", s.addr)
+	if err != nil {
+		log.Fatalf("failed to listen: %v", err)
+	}
+
+	grpcServer := grpc.NewServer()
+
+	// register our grpc services
+	// orderService := service.NewOrderService()
+	// handler.NewGrpcOrdersService(grpcServer, orderService)
+
+	log.Println("Starting gRPC server on", s.addr)
+
+	return grpcServer.Serve(lis)
 }
