@@ -17,7 +17,7 @@ func NewgRPCServer(addr string) *gRPCServer {
 func (s *gRPCServer) Run() error {
 	// Implementation for starting the gRPC server
 
-	lis, err := net.Listen("tcp", s.addr)
+	lis, err := net.Listen("tcp", s.addr) //
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
 	}
