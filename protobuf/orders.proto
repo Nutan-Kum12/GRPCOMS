@@ -5,7 +5,7 @@ option go_package="github.com/Nutan-Kum12/GRPCOMS/services/common/genproto/order
 package orders; 
 service OrderService {
     rpc CreateOrder (CreateOrderRequest) returns (CreateOrderResponse);
-    // rpc GetOrder (GetOrderRequest) returns (GetOrderResponse);
+    rpc GetOrder (GetOrderRequest) returns (GetOrderResponse);
 }
 message Order{
     int32 orderID = 1;

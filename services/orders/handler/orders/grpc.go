@@ -5,6 +5,7 @@ import (
 
 	"github.com/Nutan-Kum12/GRPCOMS.git/services/common/genproto/orders"
 	"github.com/Nutan-Kum12/GRPCOMS.git/services/orders/types"
+	"google.golang.org/grpc"
 )
 
 type OrdersGrpcHandler struct {
@@ -23,11 +24,15 @@ type OrdersGrpcHandler struct {
 	// rest fall back to returning "method not implemented" errors.
 }
 
-func NewOrderGrpcHandler(orderService types.OrderService) *OrdersGrpcHandler {
-	return &OrdersGrpcHandler{
+func NewOrderGrpcHandler(grpc *grpc.Server, orderService types.OrderService) {
+	grpchandler := &OrdersGrpcHandler{
 		orderService: orderService,
 	}
+	orders.RegisterOrderServiceServer(grpc, grpchandler)
+	//  It's part of the standard gRPC service registration pattern that
+	// connects your business logic to the gRPC transport layer.
 }
+
 func (h *OrdersGrpcHandler) CreateOrder(ctx context.Context, req *orders.CreateOrderRequest) (*orders.CreateOrderResponse, error) {
 	order := &orders.Order{
 		OrderID:    42,

@@ -4,6 +4,8 @@ import (
 	"log"
 	"net"
 
+	handler "github.com/Nutan-Kum12/GRPCOMS.git/services/orders/handler/orders"
+	"github.com/Nutan-Kum12/GRPCOMS.git/services/orders/services"
 	"google.golang.org/grpc"
 )
 
@@ -21,9 +23,16 @@ func (s *gRPCServer) Run() error {
 	}
 	grpcServer := grpc.NewServer()
 	// register our grpc services
-	// orderService := service.NewOrderService()
-	// handler.NewGrpcOrdersService(grpcServer, orderService)
+	orderService := services.NewOrdersService()
+	handler.NewOrderGrpcHandler(grpcServer, orderService)
 
 	log.Println("Starting gRPC server on", s.addr)
 	return grpcServer.Serve(lis)
 }
+
+// When Run() executes:
+// 1. Opens port 8080
+// 2. Creates gRPC server
+// 3. Registers OrderService
+// 4. Starts serving requests
+// 5. Waits forever for clients to connect

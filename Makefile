@@ -1,3 +1,9 @@
+run-orders:
+	cd services/orders && go run .
+run-kitchen:
+	cd services/kitchen && go run .
+
+
 gen:
 	@protoc \
 		--proto_path=protobuf "protobuf/orders.proto" \
