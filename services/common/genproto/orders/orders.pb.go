@@ -306,9 +306,10 @@ const file_orders_proto_rawDesc = "" +
 	"customerID\x18\x01 \x01(\x05R\n" +
 	"customerID\"9\n" +
 	"\x10GetOrderResponse\x12%\n" +
-	"\x06orders\x18\x01 \x03(\v2\r.orders.OrderR\x06orders2V\n" +
+	"\x06orders\x18\x01 \x03(\v2\r.orders.OrderR\x06orders2\x95\x01\n" +
 	"\fOrderService\x12F\n" +
-	"\vCreateOrder\x12\x1a.orders.CreateOrderRequest\x1a\x1b.orders.CreateOrderResponseB@Z>github.com/Nutan-Kum12/GRPCOMS/services/common/genproto/ordersb\x06proto3"
+	"\vCreateOrder\x12\x1a.orders.CreateOrderRequest\x1a\x1b.orders.CreateOrderResponse\x12=\n" +
+	"\bGetOrder\x12\x17.orders.GetOrderRequest\x1a\x18.orders.GetOrderResponseB@Z>github.com/Nutan-Kum12/GRPCOMS/services/common/genproto/ordersb\x06proto3"
 
 var (
 	file_orders_proto_rawDescOnce sync.Once
@@ -333,9 +334,11 @@ var file_orders_proto_goTypes = []any{
 var file_orders_proto_depIdxs = []int32{
 	0, // 0: orders.GetOrderResponse.orders:type_name -> orders.Order
 	1, // 1: orders.OrderService.CreateOrder:input_type -> orders.CreateOrderRequest
-	2, // 2: orders.OrderService.CreateOrder:output_type -> orders.CreateOrderResponse
-	2, // [2:3] is the sub-list for method output_type
-	1, // [1:2] is the sub-list for method input_type
+	3, // 2: orders.OrderService.GetOrder:input_type -> orders.GetOrderRequest
+	2, // 3: orders.OrderService.CreateOrder:output_type -> orders.CreateOrderResponse
+	4, // 4: orders.OrderService.GetOrder:output_type -> orders.GetOrderResponse
+	3, // [3:5] is the sub-list for method output_type
+	1, // [1:3] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name
 	1, // [1:1] is the sub-list for extension extendee
 	0, // [0:1] is the sub-list for field type_name

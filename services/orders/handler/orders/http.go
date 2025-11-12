@@ -19,11 +19,12 @@ func NewOrderhttpHandler(orderService types.OrderService) *OrdershttpHandler {
 	return handler
 }
 func (h *OrdershttpHandler) RegisterRoute(router *http.ServeMux) {
-	router.HandleFunc("POST / orders", h.CreateOrder)
+	router.HandleFunc("POST /orders", h.CreateOrder)
 }
 func (h *OrdershttpHandler) CreateOrder(w http.ResponseWriter, r *http.Request) {
 	var req orders.CreateOrderRequest
-	err := util.ParseJSON(r, &req)
+	err := util.ParseJSON(r, &req) //read the HTTP request body and converts the
+	// JSON into your protobuf structs so you can access it using the auto-gen getter methods.
 	if err != nil {
 		util.WriteError(w, http.StatusBadRequest, err)
 		return

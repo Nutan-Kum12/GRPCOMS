@@ -20,3 +20,11 @@ func (s *OrdersService) CreateOrder(ctx context.Context, order *orders.Order) er
 	ordersDb = append(ordersDb, *order)
 	return nil
 }
+func (s *OrdersService) GetOrder(ctx context.Context) []*orders.Order {
+	// Convert []orders.Order to []*orders.Order
+	result := make([]*orders.Order, len(ordersDb))
+	for i := range ordersDb {
+		result[i] = &ordersDb[i]
+	}
+	return result
+}

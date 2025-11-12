@@ -32,7 +32,13 @@ func NewOrderGrpcHandler(grpc *grpc.Server, orderService types.OrderService) {
 	//  It's part of the standard gRPC service registration pattern that
 	// connects your business logic to the gRPC transport layer.
 }
-
+func (h *OrdersGrpcHandler) GetOrder(ctx context.Context, req *orders.GetOrderRequest) (*orders.GetOrderResponse, error) {
+	orderList := h.orderService.GetOrder(ctx)
+	res := &orders.GetOrderResponse{
+		Orders: orderList,
+	}
+	return res, nil
+}
 func (h *OrdersGrpcHandler) CreateOrder(ctx context.Context, req *orders.CreateOrderRequest) (*orders.CreateOrderResponse, error) {
 	order := &orders.Order{
 		OrderID:    42,

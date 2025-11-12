@@ -9,4 +9,5 @@ import (
 type OrderService interface {
 	// Define methods for the OrderService
 	CreateOrder(context.Context, *orders.Order) error
+	GetOrder(context.Context) []*orders.Order
 }
